@@ -379,7 +379,6 @@
               <textarea placeholder="Doa & Ucapan" name="ucapan" id="ucapan" cols="30" rows="10" class="form-control mb-4"></textarea>
             </div>
             <button type="submit" class="btn btn-light save-date">Submit Ucapan</button>
-            <button onclick="hapusDataUcapan()">Kosongkan Ucapan</button>
           </form>
 
           <!-- Tempat Tampilkan Ucapan -->
@@ -456,13 +455,6 @@
     <script src="wp-content/themes/invitation-wedding/templates/template-2/assets/assets/plugins/sweetalert2-11.4.4/package/dist/sweetalert2.all.min.js"></script>
     <script src="wp-content/themes/invitation-wedding/templates/template-2/assets/assets/plugins/sweetalert2-11.4.4/package/dist/sweetalert2.min.js"></script>
 
-    <!-- pesam -->
-     <script>
-      function hapusDataUcapan() {
-        localStorage.removeItem("ucapanTamu");
-        location.reload(); // Refresh halaman agar data hilang dari tampilan
-      }
-    </script>
     <script>
   // GANTI DENGAN CONFIG DARI FIREBASE KAMU
   const firebaseConfig = {
