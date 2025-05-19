@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Wedding Of Fia & Firman </title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link
       href="https://fonts.googleapis.com/css?family=Poppins"
@@ -459,41 +463,56 @@
         location.reload(); // Refresh halaman agar data hilang dari tampilan
       }
     </script>
-     <script>
-    // Menyimpan ke localStorage
-    function simpanUcapan(event) {
-      event.preventDefault(); // Cegah form kirim ke server
+    <script>
+  // GANTI DENGAN CONFIG DARI FIREBASE KAMU
+  const firebaseConfig = {
+    apiKey: "AIzaSyBYxnnuvH4JTrY26GcJnN5j1JVtFzbuW80",
+    authDomain: "pesan-nikah.firebaseapp.com",
+    databaseURL: "https://pesan-nikah-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "pesan-nikah",
+    storageBucket: "pesan-nikah.firebasestorage.app",
+    messagingSenderId: "102406447696",
+    appId: "1:102406447696:web:b3572035b3dca81251e755",
+    measurementId: "G-EHBSBYZD00"
 
-      const nama = document.getElementById("name").value.trim();
-      const ucapan = document.getElementById("ucapan").value.trim();
+  };
 
-      if (!nama || !ucapan) return;
+  // Inisialisasi Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
 
-      // Ambil ucapan lama
-      const daftarUcapan = JSON.parse(localStorage.getItem("ucapanTamu")) || [];
+  // Menyimpan ke Firebase
+  function simpanUcapan(event) {
+    event.preventDefault();
 
-      // Tambahkan ucapan baru
-      daftarUcapan.push({ nama, ucapan });
+    const nama = document.getElementById("name").value.trim();
+    const ucapan = document.getElementById("ucapan").value.trim();
 
-      // Simpan lagi ke localStorage
-      localStorage.setItem("ucapanTamu", JSON.stringify(daftarUcapan));
+    if (!nama || !ucapan) return;
 
-      // Tampilkan ulang
-      tampilkanUcapan();
+    const data = {
+      nama: nama,
+      ucapan: ucapan,
+      timestamp: Date.now()
+    };
 
-      // Reset form
-      document.getElementById("name").value = "";
-      document.getElementById("ucapan").value = "";
-    }
+    // Simpan ke Firebase
+    database.ref("ucapan").push(data);
 
-    // Menampilkan ucapan di halaman
-    function tampilkanUcapan() {
-      const daftar = JSON.parse(localStorage.getItem("ucapanTamu")) || [];
-      const container = document.getElementById("daftarUcapan");
+    // Reset form
+    document.getElementById("name").value = "";
+    document.getElementById("ucapan").value = "";
+  }
 
-      container.innerHTML = ""; // Kosongkan dulu
+  // Menampilkan data dari Firebase
+  function tampilkanUcapan() {
+    const container = document.getElementById("daftarUcapan");
+    container.innerHTML = "";
 
-      daftar.forEach(item => {
+    database.ref("ucapan").orderByChild("timestamp").on("value", (snapshot) => {
+      container.innerHTML = ""; // Bersihkan dulu
+      snapshot.forEach(childSnapshot => {
+        const item = childSnapshot.val();
         const html = `
           <div class="user-guestbook">
             <div>
@@ -506,11 +525,20 @@
           </div>`;
         container.innerHTML += html;
       });
-    }
+    });
+  }
 
-    // Panggil saat halaman dibuka
-    document.addEventListener("DOMContentLoaded", tampilkanUcapan);
-  </script>
+  // Jalankan saat halaman dibuka
+  document.addEventListener("DOMContentLoaded", tampilkanUcapan);
+
+  // Kosongkan semua ucapan dari Firebase
+  function hapusDataUcapan() {
+    if (confirm("Yakin ingin menghapus semua ucapan?")) {
+      database.ref("ucapan").remove();
+    }
+  }
+</script>
+
 
     <script>
       $('[data-magnify=gallery]').magnify({
