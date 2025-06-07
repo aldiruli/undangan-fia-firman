@@ -54,8 +54,8 @@ p {
   width: 350px;
   height: 150px;
   margin: 30px auto;
-  background-color: #42321a;
-  color: #f4bf5d;
+  background-color: #111924;
+  color: #f0f0f0;
   border-radius: 15px;
   justify-content: space-around;
 }
@@ -93,7 +93,7 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
-  background-color: #e3d3b2;
+  background-color: #27629a;
   animation: btn-open-invitation 4s infinite;
 }
 .wayang {
