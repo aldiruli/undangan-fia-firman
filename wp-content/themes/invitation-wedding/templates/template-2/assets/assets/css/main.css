@@ -16,12 +16,12 @@
   z-index: -2; /* tangan di bawah */
 }
 
-.bg-layer.bunga-kanan {
+/* .bg-layer.bunga-kanan {
   background-image: url('../img/firman/bunga-kanan.png');
   background-size: cover;
   background-position: right top;
   z-index: -0; 
-}
+} */
 
 p {
   margin: 0;
