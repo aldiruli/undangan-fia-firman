@@ -12,7 +12,7 @@
 }
 
 .bg-layer.tangan {
-  background-image: url('../img/firman/tangan.jpg');
+  background-image: url('../img/firman/tangan.JPG');
   z-index: -2; /* tangan di bawah */
 }
 
