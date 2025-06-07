@@ -1,14 +1,28 @@
-.bg {
-  /* position: fixed; */
+.bg-layer {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('../img/firman/bunga-kanan.png');
+  pointer-events: none;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  /* z-index: -1; */
+  z-index: -2;
 }
+
+.bg-layer.tangan {
+  background-image: url('../img/firman/tangan.jpg');
+  z-index: -2; /* tangan di bawah */
+}
+
+.bg-layer.bunga-kanan {
+  background-image: url('../img/firman/bunga-kanan.png');
+  background-size: cover;
+  background-position: right top;
+  z-index: -0; 
+}
+
 p {
   margin: 0;
 }
