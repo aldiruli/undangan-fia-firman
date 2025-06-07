@@ -422,7 +422,7 @@
         </div>
       </div>
     </section>
-    <audio id="audio" autoplay controls loop hidden>
+    <audio id="audio" autoplay loop>
       <source src="wp-content/themes/invitation-wedding/templates/template-2/assets/assets/music/lagu.mp3">
     </audio>
 
@@ -531,6 +531,19 @@
       database.ref("ucapan").remove();
     }
   }
+</script>
+
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("audio");
+
+    // Kadang autoplay masih diblok, jadi coba paksa play setelah load
+    setTimeout(() => {
+      audio.play().catch(e => {
+        console.log("Autoplay gagal, coba manual", e);
+      });
+    }, 500);
+  });
 </script>
 
 
