@@ -422,9 +422,12 @@
         </div>
       </div>
     </section>
-    <audio id="audio" autoplay loop>
+    <audio id="audio" loop>
   <source src="wp-content/themes/invitation-wedding/templates/template-2/assets/assets/music/lagu.mp3" type="audio/mpeg" />
 </audio>
+<button onclick="document.getElementById('audio').play()" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; padding: 10px 20px; border: none; border-radius: 20px; background-color: #fceabb; color: #000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  ▶️ Play Musik
+</button>
 
     <section class="menu d-flex" id="menu">
       <a href="#banner" class="icon">
@@ -635,17 +638,14 @@
     });
     </script>
     <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
+  const btn = document.querySelector('button[onclick]');
+  btn.addEventListener('click', () => {
     const audio = document.getElementById('audio');
-
-    if (params.get('play') === '1') {
-      audio.play().catch(err => {
-        console.log('Autoplay diblokir, user harus klik tombol:', err);
-      });
-    }
+    audio.play();
+    btn.style.display = 'none'; // sembunyikan tombol
   });
 </script>
+
 
   </body>
 </html>
