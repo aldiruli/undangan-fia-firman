@@ -423,8 +423,8 @@
       </div>
     </section>
     <audio id="audio" autoplay loop>
-      <source src="wp-content/themes/invitation-wedding/templates/template-2/assets/assets/music/lagu.mp3">
-    </audio>
+  <source src="wp-content/themes/invitation-wedding/templates/template-2/assets/assets/music/lagu.mp3" type="audio/mpeg" />
+</audio>
 
     <section class="menu d-flex" id="menu">
       <a href="#banner" class="icon">
@@ -634,5 +634,18 @@
       }
     });
     </script>
+    <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const audio = document.getElementById('audio');
+
+    if (params.get('play') === '1') {
+      audio.play().catch(err => {
+        console.log('Autoplay diblokir, user harus klik tombol:', err);
+      });
+    }
+  });
+</script>
+
   </body>
 </html>
