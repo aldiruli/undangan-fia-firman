@@ -120,7 +120,7 @@ section{
 
 
 .getting-married {
-  background-color: #27629a;
+  background-color: #f0f0f0;
 }
 .getting-married .card-getting-married {
   margin: auto;
@@ -200,7 +200,7 @@ section{
   font-family: "Playfair Display", Sans-serif;
 }
 .doa-pernikahan .doa {
-  color: #fff;
+  color: #111924;
   padding-left: 3rem;
 }
 .doa-pernikahan .doa h3 {
@@ -292,9 +292,9 @@ section{
   padding-right: 1rem;
 }
 .gallery{
-  background-color: #27629a;
+  background-color: #f0f0f0;
   text-align: center;
-  color: #fff;
+  color: #111924;
   padding: 5rem 1rem;
   font-family: "Playfair Display", Sans-serif;
 }
